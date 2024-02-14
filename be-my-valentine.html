@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Be My Valentine</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-image: url(resources/valentine_bg.jpg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+
+      div {
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      .container {
+        max-width: 60%;
+        border-radius: 20px;
+        border: 2px pink solid;
+      }
+
+      .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #mainImg {
+        max-width: 350px;
+      }
+
+      .mainPrompt {
+        background-color: white;
+      }
+
+      .questionPrompt {
+        background-color: white;
+        border-radius: 20px;
+      }
+
+      .btn {
+        border-radius: 12px;
+      }
+
+      #yesBtn {
+        background-color: #f4acb7;
+        border: none;
+      }
+
+      #noBtn {
+        background-color: #c9184a;
+      }
+
+      #yesBtn:hover {
+        background-color: #eaaab7;
+        transform: scale(1.1);
+        transition: transform 0.09s;
+      }
+
+      #noBtn:hover {
+        background-color: #b2184a;
+        transform: scale(1.1);
+        transition: transform 0.09s;
+      }
+
+      .clicked {
+        animation: shake 0.5s;
+      }
+
+      @keyframes shake {
+        10%,
+        90% {
+          transform: translateX(-5px);
+        }
+        20%,
+        80% {
+          transform: translateX(5px);
+        }
+        30%,
+        50%,
+        70% {
+          transform: translateX(-5px);
+        }
+        40%,
+        60% {
+          transform: translateX(5px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mainPrompt container">
+      <div class="row">
+        <div class="questionPrompt col-lg my-4">
+          <img
+            src="/resources/heart.gif"
+            alt="i love you!!"
+            id="mainImg"
+            class="mb-2"
+          />
+          <h1 id="question">Will you be my Valentine?</h1>
+
+          <div class="buttons">
+            <div class="row mt-4">
+              <div class="col-12">
+                <button
+                  id="yesBtn"
+                  class="btn btn-success col-10 p-2"
+                  onclick="showMessage('Yes')"
+                >
+                  YES !!!
+                </button>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <button
+                  id="noBtn"
+                  class="btn btn-danger col-10 p-2"
+                  onclick="showMessage('No')"
+                >
+                  no...
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showMessage(response) {
+        if (response === "No") {
+          const noMessages = [
+            "Nice try, that button is just for visuals",
+            "You're breaking my heart </3",
+            "EXCUSE ME????",
+            "U clicked the wrong button by mistake",
+            "WHY DID YOU CLICK NO??",
+            "Say yess alreadyyyy",
+            "🙄🙄🙄🙄",
+          ];
+
+          const noBtn = document.getElementById("noBtn");
+
+          document.getElementById("mainImg").src = "resources/no-cat.jpg";
+          document.getElementById("question").textContent =
+            noMessages[Math.floor(Math.random() * noMessages.length)];
+
+          noBtn.classList.add("clicked");
+
+          noBtn.addEventListener("animationend", () => {
+            noBtn.classList.remove("clicked");
+          });
+        }
+
+        if (response === "Yes") {
+          document.getElementById("noBtn").remove();
+          document.getElementById("yesBtn").remove();
+
+          document.getElementById("mainImg").src = "resources/yes-cats.gif";
+          const yesMessage = document.getElementById("question");
+          yesMessage.textContent =
+            "YAYYY!!! I LOVE YOU !!!! See you soon bbgirl 😘😘";
+          yesMessage.style.display = "block";
+          yesMessage.style.fontStyle = "normal";
+        }
+      }
+    </script>
+  </body>
+</html>
